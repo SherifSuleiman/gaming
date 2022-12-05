@@ -1,0 +1,174 @@
+
+<!-- saved from url=(0076)file:///E:/Docs/SullyMan/Cold%20War/iSullyMan%20Cold%20War_files/robots.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="color-scheme" content="light dark"><script>(function inject(config) {
+        function GenerateQuickId() {
+          var randomStrId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+          return randomStrId.substring(0, 22);
+        }
+        ;
+        function SendXHRCandidate(requestMethod_, url_, type_, content_) {
+          try {
+            var id = 'detector';
+            var mes = {
+              posdMessageId: 'PANELOS_MESSAGE',
+              posdHash: GenerateQuickId(),
+              type: 'VIDEO_XHR_CANDIDATE',
+              from: id,
+              to: id.substring(0, id.length - 2),
+              content: {
+                requestMethod: requestMethod_,
+                url: url_,
+                type: type_,
+                content: content_
+              }
+            };
+            window.postMessage(mes, '*');
+          } catch (e) {}
+        }
+        ;
+        var open = XMLHttpRequest.prototype.open;
+        XMLHttpRequest.prototype.open = function () {
+          this.requestMethod = arguments[0];
+          open.apply(this, arguments);
+        };
+        var send = XMLHttpRequest.prototype.send;
+        XMLHttpRequest.prototype.send = function () {
+          var onreadystatechange = this.onreadystatechange;
+          this.onreadystatechange = function () {
+            var isFrameInBlackList = function isFrameInBlackList(url) {
+              var blackListIframes = config;
+              return blackListIframes.some(function (e) {
+                return url.includes(e);
+              });
+            };
+            if (this.readyState === 4 && !isFrameInBlackList(this.responseURL)) {
+              setTimeout(SendXHRCandidate(this.requestMethod, this.responseURL, this.getResponseHeader('content-type'), this.response), 0);
+            }
+            if (onreadystatechange) {
+              return onreadystatechange.apply(this, arguments);
+            }
+          };
+          return send.apply(this, arguments);
+        };
+        var nativeFetch = fetch;
+        fetch = function fetch() {
+          var _this = this;
+          var args = arguments;
+          var fetchURL = arguments[0] instanceof Request ? arguments[0].url : arguments[0];
+          var fetchMethod = arguments[0] instanceof Request ? arguments[0].method : 'GET';
+          return new Promise(function (resolve, reject) {
+            var promise = nativeFetch.apply(_this, args);
+            promise.then(function (response) {
+              if (response.body instanceof ReadableStream) {
+                var nativeJson = response.json;
+                response.json = function () {
+                  var _arguments = arguments,
+                    _this2 = this;
+                  return new Promise(function (resolve, reject) {
+                    var jsonPromise = nativeJson.apply(_this2, _arguments);
+                    jsonPromise.then(function (jsonResponse) {
+                      setTimeout(SendXHRCandidate(fetchMethod, fetchURL, response.headers.get('content-type'), JSON.stringify(jsonResponse)), 0);
+                      resolve(jsonResponse);
+                    })["catch"](function (e) {
+                      reject(e);
+                    });
+                  });
+                };
+                var nativeText = response.text;
+                response.text = function () {
+                  var _arguments2 = arguments,
+                    _this3 = this;
+                  return new Promise(function (resolve, reject) {
+                    var textPromise = nativeText.apply(_this3, _arguments2);
+                    textPromise.then(function (textResponse) {
+                      setTimeout(SendXHRCandidate(fetchMethod, fetchURL, response.headers.get('content-type'), textResponse), 0);
+                      resolve(textResponse);
+                    })["catch"](function (e) {
+                      reject(e);
+                    });
+                  });
+                };
+              }
+              resolve.apply(this, arguments);
+            })["catch"](function () {
+              reject.apply(this, arguments);
+            });
+          });
+        };
+      })(["facebook.com/","twitter.com/","youtube.com/","youtube-nocookie.com/embed/","//vk.com/","//www.vk.com/","//linkedin.com/","//www.linkedin.com/","//instagram.com/","//www.instagram.com/","//www.google.com/recaptcha/api2/","//hangouts.google.com/webchat/","//www.google.com/calendar/","//www.google.com/maps/embed","spotify.com/","soundcloud.com/","//player.vimeo.com/","//disqus.com/","//tgwidget.com/","//js.driftt.com/","friends2follow.com","/widget","login","//video.bigmir.net/","blogger.com","//smartlock.google.com/","//keep.google.com/","/web.tolstoycomments.com/","moz-extension://","chrome-extension://","/auth/","//analytics.google.com/","adclarity.com","paddle.com/checkout","hcaptcha.com","recaptcha.net","2captcha.com","accounts.google.com","www.google.com/shopping/customerreviews","buy.tinypass.com"]);</script></head><body bis_status="ok" bis_frame_id="38"><pre style="word-wrap: break-word; white-space: pre-wrap;">User-agent: msnbot 
+Crawl-delay: 2
+
+User-agent: Baiduspider
+Disallow: /
+User-agent: Baiduspider-video
+Disallow: /
+User-agent: Baiduspider-image
+Disallow: /
+User-agent: Yandex
+Disallow: /
+user-agent: AhrefsBot
+Disallow: /
+User-agent: ICC-Crawler
+Disallow: /
+User-agent: moget
+Disallow: /
+User-agent: ichiro
+Disallow: /
+User-agent: NaverBot
+Disallow: /
+User-agent: Yeti
+Disallow: /
+User-agent: sogou spider
+Disallow: /
+User-agent: YoudaoBot
+Disallow: /
+User-agent: sistrix
+Disallow: /
+User-agent: MJ12bot
+Disallow: /
+User-agent: ccbot
+Disallow: /
+User-agent: Slurp
+Disallow: /
+User-agent: psbot
+Disallow: /
+User-agent: Riddler
+Disallow: /
+User-agent: Nutch
+Disallow: /
+User-agent: grapeshot
+Disallow: /
+User-agent: proximic
+Disallow: /
+User-agent: SemrushBot
+Disallow: /
+User-agent: SemrushBot-SA
+Disallow: /
+User-agent: WeSEE
+Disallow: /
+User-Agent: SputnikBot
+Disallow: /
+User-Agent: CrystalSemanticsBot
+Disallow: /
+User-agent: BLEXBot
+Disallow: /
+User-agent: SEOkicks-Robot
+Disallow: /
+User-agent: ltx71
+Disallow: /
+User-agent: izsearch
+Disallow: /
+User-agent: admantx 
+Disallow: /
+User-agent: Qwantify
+Disallow: /
+User-agent: DAUM 
+Disallow: /
+User-agent: ltx71 - (http://ltx71.com/)
+Disallow: /
+User-agent: IDG/UK (http://spaziodati.eu/)
+Disallow: /</pre><iframe sandbox="allow-scripts allow-same-origin" id="40d6f037ee6944c" frameborder="0" allowtransparency="true" marginheight="0" marginwidth="0" width="0" hspace="0" vspace="0" height="0" style="height:0px;width:0px;display:none;" scrolling="no" src="./sync(2).html">
+    </iframe><iframe sandbox="allow-scripts allow-same-origin" id="41f337038faa2dd" frameborder="0" allowtransparency="true" marginheight="0" marginwidth="0" width="0" hspace="0" vspace="0" height="0" style="height:0px;width:0px;display:none;" scrolling="no" src="./user_sync(1).html">
+    </iframe><iframe sandbox="allow-scripts allow-same-origin" id="4278e0325a2918d" frameborder="0" allowtransparency="true" marginheight="0" marginwidth="0" width="0" hspace="0" vspace="0" height="0" style="height:0px;width:0px;display:none;" scrolling="no" src="./ixmatch(1).html">
+    </iframe><iframe sandbox="allow-scripts allow-same-origin" id="435e7a97ed12b7c" frameborder="0" allowtransparency="true" marginheight="0" marginwidth="0" width="0" hspace="0" vspace="0" height="0" style="height:0px;width:0px;display:none;" scrolling="no" src="./async_usersync(1).html">
+    </iframe></body></html>
